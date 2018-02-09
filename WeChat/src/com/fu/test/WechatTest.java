@@ -20,8 +20,10 @@ import net.sf.json.JSONObject;
 public class WechatTest {
 
 	public static void main(String[] args) {
+		//获取accessToken
 		AccessToken accessToken = WeixinUtil.getAccessToken();
 		
+		//上传文件获得media_id
 		String path = "C:/Users/FXZ/Pictures/Saved Pictures/hello.jpeg";
 		try {
 			String media_id = WeixinUtil.upload(path, accessToken.getToken(), "image");
@@ -37,6 +39,7 @@ public class WechatTest {
 			e.printStackTrace();
 		}
 		
+		//创建菜单
 		String menu = JSONObject.fromObject(WeixinUtil.initMenu()).toString();
 		int result = WeixinUtil.createMenu(accessToken.getToken(), menu);
 		if(result == 0){
@@ -45,8 +48,8 @@ public class WechatTest {
 			System.out.println(result);
 		}
 		
-		
-		/*Query query = null;
+		//百度翻译API
+		Query query = null;
 		try {
 			query = TranslateUtil.initQuery("hello world");
 		} catch (UnsupportedEncodingException e) {
@@ -54,8 +57,6 @@ public class WechatTest {
 			e.printStackTrace();
 		}
 		Result transResult = TranslateUtil.getResult(query);
-		
-		System.out.println(MessageUtil.initNewsMessage("me", "you"));*/
 		
 	}
 
